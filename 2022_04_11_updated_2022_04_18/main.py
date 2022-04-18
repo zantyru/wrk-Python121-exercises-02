@@ -3,7 +3,7 @@ class Stack:
     class EmptyError(Exception):
         pass
 
-    class FullError(Exception):
+    class OverflowError(Exception):
         pass
 
     def __init__(self, max_size):
@@ -16,7 +16,7 @@ class Stack:
         if len(self.__body) < self.__max_size:
             self.__body.append(item)
         else:
-            raise Stack.FullError("Stack is full.")
+            raise Stack.OverflowError("Stack is full.")
 
     def pop(self):
         try:
@@ -40,3 +40,10 @@ if __name__ == '__main__':
     # Вынимаем из стека объект и выводим его на экран
     obj = s.pop()  # После этой операции в стеке остаётся только 2 объекта!
     print(obj) # [1, 2, 4]
+
+    # Тест на переполнение
+    for n in range(11):
+        try:
+            s.push(n)
+        except Stack.OverflowError:
+            print(f"В стеке нет места для {n}!")
