@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-import ex1_console as ex1c
+import ex1_console
 
 
 WORK_DIR = Path(__file__).absolute().parent
@@ -36,4 +36,4 @@ with sqlite3.connect(DB_FILE_NAME) as connection:
     print("Создание и наполнение БД, если это необходимо...")
     connection.executescript(SQL_SCRIPT_CREATE_ALL)
     cursor = connection.cursor()
-    ex1c.start_menu(cursor)
+    ex1_console.start_menu(cursor)
